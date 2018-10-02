@@ -19,18 +19,17 @@ function expenses(state = initialState, action = {}) {
 }
 
 function addExpense(state, expense) {
-  return {
-    ...state,
+  return Object.assign({}, state, {
     expenses: [...state.expenses, expense],
     balance: state.balance + expense.amount
-  }
+  });
 }
 
 function removeExpense(state, expense) {
   const persistedExpense = state.expenses.find(item => item.id === expense.id);
-  return {
-    ...state,
+
+  return Object.assign({}, state, {
     expenses: state.expenses.filter(item => item.id !== expense.id),
     balance: state.balance - persistedExpense.amount
-  }
+  });
 }
